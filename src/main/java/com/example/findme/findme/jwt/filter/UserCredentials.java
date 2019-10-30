@@ -7,21 +7,21 @@ import lombok.*;
 @Setter
 public class UserCredentials {
     public String getUsername() {
-        return username;
+        return email;
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.email = email;
     }
 
     public String getPassword() {
-        return password;
+        return senha;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.senha = senha;
     }
 
-    private String username;
-    private String password;
+    private String email;
+    private String senha;
 }
