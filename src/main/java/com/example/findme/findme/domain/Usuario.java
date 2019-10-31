@@ -19,6 +19,10 @@ public class Usuario {
     @Column(name = "id")
     private Long id;
 
+    @Column(name = "nome_completo")
+    @NotNull
+    private String nome;
+
     @Column(name = "email")
     @NotNull
     private String email;
@@ -27,3 +31,4 @@ public class Usuario {
     @Column(name = "senha")
     private String senha;
 }
+
