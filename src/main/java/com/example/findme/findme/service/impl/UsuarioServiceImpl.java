@@ -34,13 +34,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 
             Usuario usuarioid = usuarioRepository.findAllById(usuario.getId());
         }
-        if (usuario.getEndereco() != null ){
-
-        }
-
         Usuario usuarioCadastrado = usuarioRepository.save(usuario);
 
-        if (usuarioCadastrado.getId() != null) {
+        if (usuarioCadastrado.getEndereco() != null) {
             Endereco usuarioEndereco  = enderecoRepository.save(usuarioCadastrado.getEndereco());
         }
        return usuarioCadastrado;
