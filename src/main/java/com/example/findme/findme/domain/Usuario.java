@@ -36,5 +36,8 @@ public class Usuario {
     @Column(name = "imagem")
     private String imagem;
 
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.REMOVE)
+    private Endereco endereco;
+
 }
 

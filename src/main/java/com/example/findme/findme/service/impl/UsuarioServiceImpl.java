@@ -32,6 +32,10 @@ public class UsuarioServiceImpl implements UsuarioService {
 
         }
 
+        if (usuario.getEndereco() != null ){
+
+        }
+
         Usuario usuarios = usuarioRepository.save(usuario);
 
         return usuarios;
