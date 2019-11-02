@@ -1,0 +1,30 @@
+package com.example.findme.findme.domain;
+
+import lombok.*;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "TB_FORMA_DE_PAGAMENTO")
+public class FormaPagamento {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_forma_pagamento")
+    private Long id;
+
+    @NotNull
+    @Column(name = "cartao_de_credito")
+    private Boolean cartaoDeCredito;
+
+    @NotNull
+    @Column(name = "boleto")
+    private Boolean boleto;
+
+}

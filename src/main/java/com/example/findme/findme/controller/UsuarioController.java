@@ -23,6 +23,6 @@ public class UsuarioController {
 
         Usuario usuarios = usuarioService.cadastrarOuAlterarUsuario(usuario);
 
-        return new ResponseEntity<>(usuario, HttpStatus.CREATED);
+        return new ResponseEntity<>(usuarios, HttpStatus.CREATED);
     }
 }

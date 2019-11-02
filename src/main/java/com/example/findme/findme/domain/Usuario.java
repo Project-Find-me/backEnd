@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.File;
 
 @Getter
 @Setter
@@ -11,12 +12,12 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "tb_usuario")
+@Table(name = "TB_USUARIO")
 public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id_usuario")
     private Long id;
 
     @Column(name = "nome_completo")
@@ -30,5 +31,9 @@ public class Usuario {
     @NotNull
     @Column(name = "senha")
     private String senha;
+
+    @Column(name = "imagem")
+    private String imagem;
+
 }
 

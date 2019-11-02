@@ -1,0 +1,30 @@
+package com.example.findme.findme.domain;
+
+import lombok.*;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
+
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "TB_AGENDAMENTO_DE_SERVICO")
+public class AgendamentoDeServico {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_agendamento")
+    private Long id;
+
+    @NotNull
+    @Column(name = "data_inicio")
+    private LocalDateTime dataInicio;
+
+    @NotNull
+    @Column(name = "data_fim")
+    private LocalDateTime dataFim;
+}
