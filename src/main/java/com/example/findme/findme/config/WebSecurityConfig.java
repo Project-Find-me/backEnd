@@ -29,8 +29,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
+
+        // Permissão para uso de H@
+        // OBS: Ao parar de usar h2, comentar linhas abaixo
+        httpSecurity.authorizeRequests()
+                .antMatchers("/h2/**").permitAll();
+
+        httpSecurity.csrf().disable();
+        httpSecurity.headers().frameOptions().disable();
+
+        //----
+
         httpSecurity.csrf().disable().authorizeRequests()
-                .antMatchers("/home").permitAll()
+                .antMatchers("/").permitAll()
                 .antMatchers("/usuario").permitAll()
                 .antMatchers(HttpMethod.POST, "/login").permitAll()
                 .anyRequest().authenticated()
@@ -41,6 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 // filtra outras requisições para verificar a presença do JWT no header
                 .addFilterBefore(new JWTAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+
     }
 
 //    @Override
@@ -61,4 +73,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         authenticationProvider.setPasswordEncoder(passwordEncoder());
         return authenticationProvider;
     }
+
 }

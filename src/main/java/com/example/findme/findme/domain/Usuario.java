@@ -12,11 +12,12 @@ import java.io.File;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@SequenceGenerator(name = "usuarioseqGen", sequenceName = "seq_usuario", allocationSize = 1)
 @Table(name = "tb_usuario")
 public class Usuario {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "usuarioseqGen")
     @Column(name = "id_usuario")
     private Long id;
 
