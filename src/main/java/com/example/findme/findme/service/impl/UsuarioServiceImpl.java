@@ -1,7 +1,9 @@
 package com.example.findme.findme.service.impl;
 
+import com.example.findme.findme.domain.Endereco;
 import com.example.findme.findme.domain.Usuario;
 import com.example.findme.findme.mapper.UsuarioMapper;
+import com.example.findme.findme.repository.EnderecoRepository;
 import com.example.findme.findme.repository.UsuarioRepository;
 import com.example.findme.findme.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +17,14 @@ import java.util.Optional;
 public class UsuarioServiceImpl implements UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
-
+    private final EnderecoRepository enderecoRepository;
 
     @Autowired
-    public UsuarioServiceImpl(UsuarioRepository usuarioRepository) {
+    public UsuarioServiceImpl(UsuarioRepository usuarioRepository , EnderecoRepository enderecoRepository) {
         this.usuarioRepository = usuarioRepository;
+        this.enderecoRepository = enderecoRepository;
     }
+
 
     @Override
     @Transactional(isolation = Isolation.SERIALIZABLE)
@@ -29,15 +33,17 @@ public class UsuarioServiceImpl implements UsuarioService {
         if (usuario.getId() != null) {
 
             Usuario usuarioid = usuarioRepository.findAllById(usuario.getId());
-
         }
-
         if (usuario.getEndereco() != null ){
 
         }
 
-        Usuario usuarios = usuarioRepository.save(usuario);
+        Usuario usuarioCadastrado = usuarioRepository.save(usuario);
 
-        return usuarios;
+        if (usuarioCadastrado.getId() != null) {
+            Endereco usuarioEndereco  = enderecoRepository.save(usuarioCadastrado.getEndereco());
+        }
+       return usuarioCadastrado;
     }
+
 }

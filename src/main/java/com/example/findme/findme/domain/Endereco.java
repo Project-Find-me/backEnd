@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.math.BigInteger;
 
 @Getter
 @Setter
@@ -21,7 +22,7 @@ public class Endereco {
 
     @Column(name = "cep")
     @NotNull
-    private Integer cep;
+    private BigInteger cep;
 
     @Column(name = "cidade")
     @NotNull

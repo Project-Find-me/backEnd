@@ -20,7 +20,7 @@ public class ServicoController {
     @GetMapping("/todos-servicos")
     public List<Servico>recuperarTodosOsServicos(){
 
-        List<Servico> list = new ArrayList<Servico>(servicoRepository.findAll());
+        List<Servico> list = servicoRepository.findAll();
 
             return list;
     }
