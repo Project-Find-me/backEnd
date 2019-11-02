@@ -1,6 +1,7 @@
 package com.example.findme.findme.service.impl;
 
 import com.example.findme.findme.domain.Usuario;
+import com.example.findme.findme.mapper.UsuarioMapper;
 import com.example.findme.findme.repository.UsuarioRepository;
 import com.example.findme.findme.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,6 @@ import java.util.Optional;
 @Transactional
 public class UsuarioServiceImpl implements UsuarioService {
 
-    @Autowired
     private final UsuarioRepository usuarioRepository;
 
 
@@ -31,6 +31,9 @@ public class UsuarioServiceImpl implements UsuarioService {
             Optional<Usuario> usuarioid = usuarioRepository.findById(usuario.getId());
 
         }
-        return usuarioRepository.save(usuario);
+
+        Usuario usuarios = usuarioRepository.save(usuario);
+
+        return usuarios;
     }
 }

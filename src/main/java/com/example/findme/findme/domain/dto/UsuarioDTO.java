@@ -1,9 +1,14 @@
 package com.example.findme.findme.domain.dto;
 
 import io.swagger.annotations.ApiModelProperty;
+import lombok.*;
 
 import java.io.Serializable;
 
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class UsuarioDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;

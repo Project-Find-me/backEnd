@@ -2,7 +2,10 @@ package com.example.findme.findme.controller;
 
 
 import com.example.findme.findme.domain.Usuario;
+import com.example.findme.findme.domain.dto.UsuarioDTO;
+import com.example.findme.findme.mapper.UsuarioMapper;
 import com.example.findme.findme.service.UsuarioService;
+import org.hibernate.tool.hbm2ddl.UniqueConstraintSchemaUpdateStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,14 +18,24 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/usuario")
 public class UsuarioController {
 
+    private final UsuarioService usuarioService;
+
     @Autowired
-    private UsuarioService usuarioService;
+    private UsuarioMapper usuarioMapper;
+
+    @Autowired
+    public UsuarioController(UsuarioService usuarioService) { ;
+        this.usuarioService = usuarioService;
+    }
+
 
     @PostMapping
-    public ResponseEntity<Usuario> cadastrarUsuario(@RequestBody Usuario usuario) {
+    public ResponseEntity<UsuarioDTO> cadastrarUsuario(@RequestBody Usuario usuario) {
 
         Usuario usuarios = usuarioService.cadastrarOuAlterarUsuario(usuario);
 
-        return new ResponseEntity<>(usuarios, HttpStatus.CREATED);
+        UsuarioDTO usuarioDTO = usuarioMapper.toDto(usuarios);
+
+        return new ResponseEntity<>(usuarioDTO, HttpStatus.CREATED);
     }
 }

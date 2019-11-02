@@ -12,7 +12,7 @@ import java.io.File;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "TB_USUARIO")
+@Table(name = "tb_usuario")
 public class Usuario {
 
     @Id

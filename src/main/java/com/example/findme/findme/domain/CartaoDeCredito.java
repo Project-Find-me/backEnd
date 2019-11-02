@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "TB_CARTAO_DE_CREDITO")
+@Table(name = "tb_cartao_de_credito")
 public class CartaoDeCredito {
 
     @Id

@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "TB_FORMA_DE_PAGAMENTO")
+@Table(name = "tb_forma_de_pagamento")
 public class FormaPagamento {
 
     @Id
