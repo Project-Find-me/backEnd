@@ -28,7 +28,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
         if (usuario.getId() != null) {
 
-            Optional<Usuario> usuarioid = usuarioRepository.findById(usuario.getId());
+            Usuario usuarioid = usuarioRepository.findAllById(usuario.getId());
 
         }
 

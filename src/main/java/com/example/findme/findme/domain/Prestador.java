@@ -1,9 +1,11 @@
 package com.example.findme.findme.domain;
 
+import com.example.findme.findme.domain.dto.UsuarioDTO;
 import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.math.BigInteger;
 
 @Getter
 @Setter
@@ -21,18 +23,18 @@ public class Prestador {
 
     @Column(name = "telefone")
     @NotNull
-    private Integer telefone;
+    private BigInteger telefone;
 
     @Column(name = "rg")
     @NotNull
-    private Integer email;
+    private BigInteger rg;
 
     @NotNull
     @Column(name = "cnpj")
-    private Integer cnpj;
+    private BigInteger cnpj;
 
     @Column(name = "cpf")
-    private Integer cpf;
+    private BigInteger cpf;
 
     @ManyToOne
     @JoinColumn(name = "id_usuario")
