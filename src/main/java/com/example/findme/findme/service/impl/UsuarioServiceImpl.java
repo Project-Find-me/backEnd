@@ -61,13 +61,15 @@ public class UsuarioServiceImpl implements UsuarioService {
         byte[] btDataFile = javax.xml.bind.DatatypeConverter.parseBase64Binary(base64Image);
         BufferedImage image = ImageIO.read(new ByteArrayInputStream(btDataFile));
 
-        File outputfile = new File("images/avatar"+ usuario.getId()+ "." + formatType);
+        File outputfile = new File("images/avatar" + usuario.getId() + "." + formatType);
 
         FileOutputStream fop = new FileOutputStream(outputfile);
 
         ImageIO.write(image, formatType, fop);
 
-        return "NiceOOH D";
+        String caminhoPath = "http://localhost:8080/images/avatar" + usuario.getId() + "." + formatType;
+
+        return caminhoPath;
 
     }
 
