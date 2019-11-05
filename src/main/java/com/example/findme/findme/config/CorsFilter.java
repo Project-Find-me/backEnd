@@ -1,44 +1,47 @@
 package com.example.findme.findme.config;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
+import org.springframework.web.cors.CorsConfiguration;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.logging.Filter;
-import java.util.logging.LogRecord;
 
-@Configuration
+@Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class CorsFilter implements Filter {
 
-    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
-        final HttpServletResponse response = (HttpServletResponse) res;
+    @Override
+    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
+
         HttpServletRequest request = (HttpServletRequest) req;
-        String origin = request.getHeader("Origin");
+        HttpServletResponse response = (HttpServletResponse) resp;
+
+        response.setHeader("Access-Control-Allow-Origin", CorsConfiguration.ALL);
         response.setHeader("Access-Control-Allow-Credentials", "true");
-        response.setHeader("Access-Control-Allow-Origin", origin != null && origin.contains("ws") ? "" : origin );
-        response.setHeader("Vary", "Origin");
-        response.setHeader("Access-Control-Allow-Methods", "*");
-        response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Authorization, Content-Type, Accept, X-CSRF-TOKEN");
-        response.setHeader("Access-Control-Max-Age", "3600");
-        if ("OPTIONS".equalsIgnoreCase(((HttpServletRequest) req).getMethod())) {
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, DELETE, PUT,	OPTIONS");
+        response.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type, Accept");
+
+        if ("OPTIONS".equals(request.getMethod())) {
+            response.setHeader("Access-Control-Allow-Methods", "POST, GET, DELETE, PUT,	OPTIONS");
+            response.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type, Accept");
+            response.setHeader("Access-Control-Max-Age", "3600");
+
             response.setStatus(HttpServletResponse.SC_OK);
         } else {
-            chain.doFilter(req, res);
+
+            chain.doFilter(request, response);
         }
     }
 
-    public void destroy() {
+
+    @Override public void init(FilterConfig filterConfig) throws ServletException {
+        // Do nothing because
+    }
+    @Override public void destroy() {
+        // Do nothing because
     }
 
-    public void init(FilterConfig config) throws ServletException {
-    }
-
-    @Override
-    public boolean isLoggable(LogRecord logRecord) {
-        return false;
-    }
 }

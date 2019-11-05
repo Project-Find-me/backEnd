@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
+
 @RestController
 @RequestMapping("/usuario")
 public class UsuarioController {
@@ -30,7 +32,7 @@ public class UsuarioController {
 
 
     @PostMapping
-    public ResponseEntity<UsuarioDTO> cadastrarUsuario(@RequestBody Usuario usuario) {
+    public ResponseEntity<UsuarioDTO> cadastrarUsuario(@RequestBody Usuario usuario) throws IOException {
 
         Usuario usuarios = usuarioService.cadastrarOuAlterarUsuario(usuario);
 

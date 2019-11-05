@@ -18,6 +18,7 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
 @Configuration
 @EnableWebSecurity
@@ -42,9 +43,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         httpSecurity.csrf().disable().authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/usuario").permitAll()
-                .antMatchers("/servico/todos-servicos").permitAll()
-                .antMatchers(HttpMethod.POST, "/login").permitAll()
+                .antMatchers("/usuario/**").permitAll()
+                .antMatchers("/servico/**").permitAll()
+                .antMatchers("/images/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/login/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
 
@@ -74,5 +76,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         authenticationProvider.setPasswordEncoder(passwordEncoder());
         return authenticationProvider;
     }
+
 
 }

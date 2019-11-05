@@ -14,7 +14,7 @@ public class UsuarioMapper {
         usuarioDTO.setId(usuario.getId());
         usuarioDTO.setEmail(usuario.getEmail());
         usuarioDTO.setNome(usuario.getNome());
-        usuarioDTO.setImagem(usuario.getImagem());
+        usuarioDTO.setImagemDiretorio(usuario.getImagemDiretorio());
 
         return usuarioDTO;
 
