@@ -2,14 +2,9 @@ package com.example.findme.findme.controller;
 
 
 import com.example.findme.findme.domain.Prestador;
-import com.example.findme.findme.domain.RunTimeExceptionFindMe;
-import com.example.findme.findme.domain.Servico;
-import com.example.findme.findme.domain.Usuario;
 import com.example.findme.findme.domain.dto.PrestadorDTO;
-import com.example.findme.findme.domain.dto.UsuarioDTO;
 import com.example.findme.findme.mapper.PrestadorMapper;
 import com.example.findme.findme.mapper.UsuarioMapper;
-import com.example.findme.findme.repository.ServicoRepository;
 import com.example.findme.findme.repository.UsuarioRepository;
 import com.example.findme.findme.service.PrestadorService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -22,9 +22,9 @@ public class AgendamentoDeServico {
 
     @NotNull
     @Column(name = "data_inicio")
-    private LocalDateTime dataInicio;
+    private String dataInicio;
 
     @NotNull
     @Column(name = "data_fim")
-    private LocalDateTime dataFim;
+    private String dataFim;
 }

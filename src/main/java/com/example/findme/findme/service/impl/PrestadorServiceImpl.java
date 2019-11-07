@@ -20,6 +20,8 @@ public class PrestadorServiceImpl implements PrestadorService {
 
     private final PrestadorRepository prestadorRepository;
 
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     @Autowired
     public PrestadorServiceImpl(PrestadorRepository prestadorRepository) {
@@ -33,6 +35,10 @@ public class PrestadorServiceImpl implements PrestadorService {
         if (prestador.getId() != null) {
             Prestador servicoEncontrado = prestadorRepository.findAllById(prestador.getId());
         }
+
+        Usuario usuario = usuarioRepository.findAllById(prestador.getUsuario().getId());
+
+        prestador.setUsuario(usuario);
 
         Prestador prestadoSave = prestadorRepository.save(prestador);
 

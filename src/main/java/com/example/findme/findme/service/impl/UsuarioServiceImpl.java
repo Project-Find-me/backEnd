@@ -1,5 +1,6 @@
 package com.example.findme.findme.service.impl;
 
+import com.example.findme.findme.Exception.MessagesExcpetion.EmailExistenteException;
 import com.example.findme.findme.domain.Usuario;
 import com.example.findme.findme.repository.EnderecoRepository;
 import com.example.findme.findme.repository.UsuarioRepository;
@@ -31,6 +32,13 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     @Transactional(isolation = Isolation.SERIALIZABLE)
     public Usuario cadastrarOuAlterarUsuario(Usuario usuario) throws IOException {
+
+        Usuario validarEmail = usuarioRepository.findByEmail(usuario.getEmail());
+
+        if (validarEmail != null) {
+
+            throw new EmailExistenteException();
+        }
 
         if (usuario.getId() != null) {
 
