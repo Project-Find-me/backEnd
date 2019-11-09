@@ -1,5 +1,6 @@
 package com.example.findme.findme.domain.dto;
 
+import com.example.findme.findme.domain.Endereco;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,6 +28,7 @@ public class UsuarioDTO implements Serializable {
     @ApiModelProperty(notes = "Descricao do email")
     private String imagemDiretorio;
 
-
+    @ApiModelProperty(notes = "Descricao do email")
+    private Endereco endereco;
 
 }

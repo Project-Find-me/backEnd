@@ -48,7 +48,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         Usuario usuarioCadastrado = usuarioRepository.save(usuario);
 
 
-        if (usuario.getImagem() != null) {
+        if (usuario.getImagem().getBase64() != null) {
             String imagem = salvarImagemEmDiretorio(usuario);
             usuario.setImagemDiretorio(imagem);
         }

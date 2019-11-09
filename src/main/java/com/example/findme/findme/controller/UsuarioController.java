@@ -4,15 +4,12 @@ package com.example.findme.findme.controller;
 import com.example.findme.findme.domain.Usuario;
 import com.example.findme.findme.domain.dto.UsuarioDTO;
 import com.example.findme.findme.mapper.UsuarioMapper;
+import com.example.findme.findme.repository.UsuarioRepository;
 import com.example.findme.findme.service.UsuarioService;
-import org.hibernate.tool.hbm2ddl.UniqueConstraintSchemaUpdateStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.io.IOException;
@@ -25,6 +22,9 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioMapper usuarioMapper;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     @Autowired
     public UsuarioController(UsuarioService usuarioService) { ;
@@ -40,5 +40,17 @@ public class UsuarioController {
         UsuarioDTO usuarioDTO = usuarioMapper.toDto(usuarios);
 
         return new ResponseEntity<>(usuarioDTO, HttpStatus.CREATED);
+    }
+
+
+    @PostMapping("usuario-logado")
+    public UsuarioDTO recuperarUsuarioPormeail(@RequestBody Usuario usuario){
+
+        Usuario usuarioRecebido = usuarioRepository.findByEmail(usuario.getEmail());
+
+        UsuarioDTO usuarioDTO = usuarioMapper.toDto(usuarioRecebido);
+
+        return usuarioDTO;
+
     }
 }
