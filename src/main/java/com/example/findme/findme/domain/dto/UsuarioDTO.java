@@ -29,6 +29,6 @@ public class UsuarioDTO implements Serializable {
     private String imagemDiretorio;
 
     @ApiModelProperty(notes = "Descricao do email")
-    private Endereco endereco;
+    private EnderecoDTO endereco;
 
 }
