@@ -31,19 +31,20 @@ public class PrestadorController {
 
     private final UsuarioMapper usuarioMapper;
 
-    @Autowired
-    private PrestadorRepository prestadorRepository;
+    private final PrestadorRepository prestadorRepository;
 
     @Autowired
     public PrestadorController(
             UsuarioRepository usuarioRepository,
             PrestadorService prestadorService,
             UsuarioMapper usuarioMapper,
-            PrestadorMapper prestadorMapper) {
+            PrestadorMapper prestadorMapper,
+            PrestadorRepository prestadorRepository) {
         this.usuarioRepository = usuarioRepository;
         this.prestadorService = prestadorService;
         this.usuarioMapper = usuarioMapper;
         this.prestadorMapper = prestadorMapper;
+        this.prestadorRepository = prestadorRepository;
     }
 
     @PostMapping
@@ -60,13 +61,13 @@ public class PrestadorController {
 
 
     @GetMapping("/prestadores-random")
-    public List<PrestadorDTO> recuperarAnunciosRandom() {
+    public ResponseEntity<List<PrestadorDTO>> recuperarAnunciosRandom() {
 
         List<Prestador> prestador = prestadorRepository.recuperarPrestadorRandom(PageRequest.of(0,9));
 
         List<PrestadorDTO> criarDTO = prestadorMapper.toDtoList(prestador);
 
-        return criarDTO;
+        return ResponseEntity.ok(criarDTO);
     }
 
 }
