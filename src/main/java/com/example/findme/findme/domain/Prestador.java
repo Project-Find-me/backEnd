@@ -36,7 +36,7 @@ public class Prestador {
     @Column(name = "cpf")
     private BigInteger cpf;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 
