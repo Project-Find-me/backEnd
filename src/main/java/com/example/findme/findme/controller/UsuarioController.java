@@ -48,9 +48,7 @@ public class UsuarioController {
 
         Usuario usuarioRecebido = usuarioRepository.findByEmail(usuario.getEmail());
 
-        UsuarioDTO usuarioDTO = usuarioMapper.toDto(usuarioRecebido);
-
-        return usuarioDTO;
+        return usuarioMapper.toDto(usuarioRecebido);
 
     }
 }

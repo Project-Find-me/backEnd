@@ -30,7 +30,7 @@ public class Endereco {
 
     @NotNull
     @Column(name = "uf")
-    private String UF;
+    private String uf;
 
     @NotNull
     @Column(name = "rua")

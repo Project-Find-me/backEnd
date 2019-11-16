@@ -27,7 +27,7 @@ public class EnderecoDTO implements Serializable {
     private String cidade;
 
     @ApiModelProperty("Identificador do usuário")
-    private String UF;
+    private String uf;
 
     @ApiModelProperty("Identificador do usuário")
     private String rua;

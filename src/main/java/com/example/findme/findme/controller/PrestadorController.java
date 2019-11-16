@@ -12,10 +12,12 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -70,4 +72,18 @@ public class PrestadorController {
         return ResponseEntity.ok(criarDTO);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<List<PrestadorDTO>> recuperandoIdServicoDoPrestador(@PathVariable("id") Long id){
+
+        List<Prestador> prestador = prestadorRepository.recuperaIdServico(id);
+
+        if(prestador.size() == 0){
+           prestador = new ArrayList<>();
+        }
+        List<PrestadorDTO> criarDTO = prestadorMapper.toDtoList(prestador);
+
+        return ResponseEntity.ok(criarDTO);
+    }
+
 }
+

@@ -24,7 +24,7 @@ public class EnderecoMapper {
         enderecoDTO.setCidade(endereco.getCidade());
         enderecoDTO.setNumero(endereco.getNumero());
         enderecoDTO.setRua(endereco.getRua());
-        enderecoDTO.setUF(endereco.getUF());
+        enderecoDTO.setUf(endereco.getUf());
 
         return enderecoDTO;
     }
