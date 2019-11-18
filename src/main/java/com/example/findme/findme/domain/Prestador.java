@@ -29,7 +29,6 @@ public class Prestador {
     @NotNull
     private BigInteger rg;
 
-    @NotNull
     @Column(name = "cnpj")
     private BigInteger cnpj;
 
