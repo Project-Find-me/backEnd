@@ -1,5 +1,6 @@
 package com.example.findme.findme.service.impl;
 
+import com.example.findme.findme.Exception.MessagesExcpetion.UsuarioNuloException;
 import com.example.findme.findme.domain.Prestador;
 import com.example.findme.findme.domain.Servico;
 import com.example.findme.findme.domain.Usuario;
@@ -38,10 +39,14 @@ public class PrestadorServiceImpl implements PrestadorService {
 
         Usuario usuario = usuarioRepository.findAllById(prestador.getUsuario().getId());
 
+        if (usuario == null) {
+            throw new UsuarioNuloException();
+        }
+
         prestador.setUsuario(usuario);
 
-        Prestador prestadoSave = prestadorRepository.save(prestador);
+        this.prestadorRepository.save(prestador);
 
-        return prestadoSave;
+        return prestador;
     }
 }

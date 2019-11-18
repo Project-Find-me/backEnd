@@ -1,7 +1,9 @@
 package com.example.findme.findme.controller;
 
 
+import com.example.findme.findme.Exception.MessagesExcpetion.UsuarioNuloException;
 import com.example.findme.findme.domain.Prestador;
+import com.example.findme.findme.domain.Usuario;
 import com.example.findme.findme.domain.dto.PrestadorDTO;
 import com.example.findme.findme.mapper.PrestadorMapper;
 import com.example.findme.findme.mapper.UsuarioMapper;
@@ -52,6 +54,9 @@ public class PrestadorController {
     @PostMapping
     public ResponseEntity<PrestadorDTO> cadastrarPrestador(@RequestBody Prestador prestador) {
 
+        if (prestador.getUsuario().getId() == null) {
+            throw new UsuarioNuloException();
+        }
 
         Prestador prestadorCadastrado = prestadorService.cadastrarOuAlterarPrestador(prestador);
 
