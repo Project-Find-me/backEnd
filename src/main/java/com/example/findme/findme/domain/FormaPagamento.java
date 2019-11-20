@@ -19,11 +19,9 @@ public class FormaPagamento {
     @Column(name = "id_forma_pagamento")
     private Long id;
 
-    @NotNull
     @Column(name = "cartao_de_credito")
     private Boolean cartaoDeCredito;
 
-    @NotNull
     @Column(name = "boleto")
     private Boolean boleto;
 
