@@ -3,11 +3,15 @@ package com.example.findme.findme.controller;
 
 import com.example.findme.findme.Exception.MessagesExcpetion.UsuarioNuloException;
 import com.example.findme.findme.domain.Prestador;
+import com.example.findme.findme.domain.ServicoContratado;
 import com.example.findme.findme.domain.Usuario;
 import com.example.findme.findme.domain.dto.PrestadorDTO;
+import com.example.findme.findme.domain.dto.ServicoContratadoDTO;
 import com.example.findme.findme.mapper.PrestadorMapper;
+import com.example.findme.findme.mapper.ServicoContratoMapper;
 import com.example.findme.findme.mapper.UsuarioMapper;
 import com.example.findme.findme.repository.PrestadorRepository;
+import com.example.findme.findme.repository.ServicoContratoRepository;
 import com.example.findme.findme.repository.UsuarioRepository;
 import com.example.findme.findme.service.PrestadorService;
 import io.swagger.annotations.ApiOperation;
@@ -37,18 +41,26 @@ public class PrestadorController {
 
     private final PrestadorRepository prestadorRepository;
 
+    private final ServicoContratoRepository servicoContratoRepository;
+
+    private final ServicoContratoMapper servicoContratoMapper;
+
     @Autowired
     public PrestadorController(
             UsuarioRepository usuarioRepository,
             PrestadorService prestadorService,
             UsuarioMapper usuarioMapper,
             PrestadorMapper prestadorMapper,
-            PrestadorRepository prestadorRepository) {
+            PrestadorRepository prestadorRepository,
+            ServicoContratoRepository servicoContratoRepository,
+            ServicoContratoMapper servicoContratoMapper) {
         this.usuarioRepository = usuarioRepository;
         this.prestadorService = prestadorService;
         this.usuarioMapper = usuarioMapper;
         this.prestadorMapper = prestadorMapper;
         this.prestadorRepository = prestadorRepository;
+        this.servicoContratoRepository = servicoContratoRepository;
+        this.servicoContratoMapper = servicoContratoMapper;
     }
 
     @PostMapping
@@ -88,6 +100,17 @@ public class PrestadorController {
         List<PrestadorDTO> criarDTO = prestadorMapper.toDtoList(prestador);
 
         return ResponseEntity.ok(criarDTO);
+    }
+
+    @GetMapping("/lista-contratos/{id}")
+    public ResponseEntity<List<ServicoContratadoDTO>> listaContratosDoPrestador(@PathVariable("id") Long id){
+
+        List<ServicoContratado> servicoContratado = servicoContratoRepository.recuperaTodosServicoPrestador(id);
+
+        List<ServicoContratadoDTO> servicoContratadoDTOS = servicoContratoMapper.toDtoList(servicoContratado);
+
+        return new ResponseEntity<>(servicoContratadoDTOS,HttpStatus.FOUND);
+
     }
 
 }

@@ -15,6 +15,9 @@ public class ServicoContratadoDTO  implements Serializable {
     @ApiModelProperty(notes = "Id do contrato")
     private Long id;
 
+    @ApiModelProperty(notes = "Status do Servico solicitado")
+    private Boolean statusDeContrato;
+
     @ApiModelProperty(notes = "Usuário que contratou o prestador")
     private UsuarioDTO usuario;
 

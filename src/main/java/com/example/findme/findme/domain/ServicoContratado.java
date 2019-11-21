@@ -16,7 +16,10 @@ public class ServicoContratado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_servico_contratado")
-    private Long id;
+        private Long id;
+
+    @Column(name = "status_contrato")
+    private Boolean statusDeContrato = false;
 
     @ManyToOne
     @JoinColumn(name = "id_usuario")

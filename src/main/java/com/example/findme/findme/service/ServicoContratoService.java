@@ -9,4 +9,6 @@ public interface ServicoContratoService {
 
     CartaoDeCredito pagarComCartaoDeCredito(CartaoDeCredito cartaoDeCredito);
 
+    ServicoContratado aceitarContrato(ServicoContratado servicoContratado);
+
 }

@@ -71,5 +71,12 @@ public class ServicoContratoServiceImpl implements ServicoContratoService {
         return cartaoDeCredito;
     }
 
+    public ServicoContratado aceitarContrato(ServicoContratado servicoContratado){
+
+        servicoContratado.setStatusDeContrato(true);
+        this.servicoContratoRepository.save(servicoContratado);
+        return servicoContratado;
+    }
+
 
 }
