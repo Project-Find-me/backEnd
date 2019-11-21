@@ -89,7 +89,7 @@ public class PrestadorController {
         return ResponseEntity.ok(criarDTO);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/servico/{id}")
     public ResponseEntity<List<PrestadorDTO>> recuperandoIdServicoDoPrestador(@PathVariable("id") Long id){
 
         List<Prestador> prestador = prestadorRepository.recuperaIdServico(id);
