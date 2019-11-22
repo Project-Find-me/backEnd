@@ -20,4 +20,7 @@ public interface PrestadorRepository extends JpaRepository<Prestador, Long> {
 
     @Query(value = "Select u from Prestador u where u.servico.id = :id")
     List<Prestador> recuperaIdServico(@Param("id") Long id);
+
+    @Query(value = "SELECT p from Prestador p where p.usuario.id = :id")
+    Prestador prestadorPorIdUsuario(@Param("id") Long id);
 }
