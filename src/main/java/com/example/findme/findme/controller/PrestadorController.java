@@ -14,6 +14,7 @@ import com.example.findme.findme.repository.PrestadorRepository;
 import com.example.findme.findme.repository.ServicoContratoRepository;
 import com.example.findme.findme.repository.UsuarioRepository;
 import com.example.findme.findme.service.PrestadorService;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,7 +83,7 @@ public class PrestadorController {
     @GetMapping("/prestadores-random")
     public ResponseEntity<List<PrestadorDTO>> recuperarAnunciosRandom() {
 
-        List<Prestador> prestador = prestadorRepository.recuperarPrestadorRandom(PageRequest.of(0,9));
+        List<Prestador> prestador = prestadorRepository.recuperarPrestadorRandom(PageRequest.of(0, 9));
 
         List<PrestadorDTO> criarDTO = prestadorMapper.toDtoList(prestador);
 
@@ -90,12 +91,12 @@ public class PrestadorController {
     }
 
     @GetMapping("/servico/{id}")
-    public ResponseEntity<List<PrestadorDTO>> recuperandoIdServicoDoPrestador(@PathVariable("id") Long id){
+    public ResponseEntity<List<PrestadorDTO>> recuperandoIdServicoDoPrestador(@PathVariable("id") Long id) {
 
         List<Prestador> prestador = prestadorRepository.recuperaIdServico(id);
 
-        if(prestador.size() == 0){
-           prestador = new ArrayList<>();
+        if (prestador.size() == 0) {
+            prestador = new ArrayList<>();
         }
         List<PrestadorDTO> criarDTO = prestadorMapper.toDtoList(prestador);
 
@@ -103,14 +104,30 @@ public class PrestadorController {
     }
 
     @GetMapping("/lista-contratos/{id}")
-    public ResponseEntity<List<ServicoContratadoDTO>> listaContratosDoPrestador(@PathVariable("id") Long id){
+    public ResponseEntity<List<ServicoContratadoDTO>> listaContratosDoPrestador(@PathVariable("id") Long id) {
 
         List<ServicoContratado> servicoContratado = servicoContratoRepository.recuperaTodosServicoPrestador(id);
 
         List<ServicoContratadoDTO> servicoContratadoDTOS = servicoContratoMapper.toDtoList(servicoContratado);
 
-        return new ResponseEntity<>(servicoContratadoDTOS,HttpStatus.FOUND);
+        return new ResponseEntity<>(servicoContratadoDTOS, HttpStatus.FOUND);
 
+    }
+
+    @PutMapping("verificar/usuario/prestador")
+    public Boolean verificarSeUsuarioEPrestador(@RequestBody Usuario usuario) {
+
+        Prestador prestador = prestadorRepository.prestadorPorIdUsuario(usuario.getId());
+
+        boolean verificarSePrestadorExiste = false;
+
+        if (prestador != null) {
+
+            verificarSePrestadorExiste = true;
+
+        }
+
+        return verificarSePrestadorExiste;
     }
 
 }
