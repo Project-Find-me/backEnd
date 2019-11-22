@@ -14,12 +14,8 @@ import com.example.findme.findme.repository.PrestadorRepository;
 import com.example.findme.findme.repository.ServicoContratoRepository;
 import com.example.findme.findme.repository.UsuarioRepository;
 import com.example.findme.findme.service.PrestadorService;
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -129,6 +125,5 @@ public class PrestadorController {
 
         return verificarSePrestadorExiste;
     }
-
 }
 

@@ -17,5 +17,7 @@ public interface ServicoContratoRepository extends JpaRepository<ServicoContrata
     @Query(value = "Select u from ServicoContratado u where u.prestador.id = :id")
     List<ServicoContratado> recuperaTodosServicoPrestador(@Param("id") Long id);
 
+    @Query(value = "Select sc from ServicoContratado sc where sc.usuario.id = :id")
+    List<ServicoContratado> recuperaTodosServicoUsuario(@Param("id") Long id);
 
 }

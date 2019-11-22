@@ -1,9 +1,13 @@
 package com.example.findme.findme.controller;
 
 
+import com.example.findme.findme.domain.ServicoContratado;
 import com.example.findme.findme.domain.Usuario;
+import com.example.findme.findme.domain.dto.ServicoContratadoDTO;
 import com.example.findme.findme.domain.dto.UsuarioDTO;
+import com.example.findme.findme.mapper.ServicoContratoMapper;
 import com.example.findme.findme.mapper.UsuarioMapper;
+import com.example.findme.findme.repository.ServicoContratoRepository;
 import com.example.findme.findme.repository.UsuarioRepository;
 import com.example.findme.findme.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/usuario")
@@ -27,7 +32,14 @@ public class UsuarioController {
     private UsuarioRepository usuarioRepository;
 
     @Autowired
-    public UsuarioController(UsuarioService usuarioService) { ;
+    private ServicoContratoRepository servicoContratoRepository;
+
+    @Autowired
+    private ServicoContratoMapper servicoContratoMapper;
+
+    @Autowired
+    public UsuarioController(UsuarioService usuarioService) {
+        ;
         this.usuarioService = usuarioService;
     }
 
@@ -44,11 +56,22 @@ public class UsuarioController {
 
 
     @PostMapping("usuario-logado")
-    public UsuarioDTO recuperarUsuarioPormeail(@RequestBody Usuario usuario){
+    public UsuarioDTO recuperarUsuarioPormeail(@RequestBody Usuario usuario) {
 
         Usuario usuarioRecebido = usuarioRepository.findByEmail(usuario.getEmail());
 
         return usuarioMapper.toDto(usuarioRecebido);
+
+    }
+
+    @GetMapping("/lista-servico-contratados/{id}")
+    public ResponseEntity<List<ServicoContratadoDTO>> listaDeServicosContratados(@PathVariable("id") Long id) {
+
+        List<ServicoContratado> servicoContratado = servicoContratoRepository.recuperaTodosServicoUsuario(id);
+
+        List<ServicoContratadoDTO> servicoContratadoDTOS = servicoContratoMapper.toDtoList(servicoContratado);
+
+        return new ResponseEntity<>(servicoContratadoDTOS, HttpStatus.FOUND);
 
     }
 }
