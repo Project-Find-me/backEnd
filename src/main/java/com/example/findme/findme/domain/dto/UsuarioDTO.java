@@ -30,7 +30,4 @@ public class UsuarioDTO implements Serializable {
 
     @ApiModelProperty(notes = "Descricao do email")
     private EnderecoDTO endereco;
-
-    @ApiModelProperty(notes = "Usuario Prestador")
-    private PrestadorDTO prestador;
 }

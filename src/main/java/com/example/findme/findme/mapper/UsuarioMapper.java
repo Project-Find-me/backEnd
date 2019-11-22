@@ -31,13 +31,6 @@ public class UsuarioMapper {
 
         EnderecoDTO enderecoDTO = enderecoMapper.toDto(usuario.getEndereco());
 
-        Prestador prestador = prestadorRepository.prestadorPorIdUsuario(usuario.getId());
-
-        if (prestador != null) {
-            PrestadorDTO prestadorDTO = prestadorMapper.toDto(prestador);
-            usuarioDTO.setPrestador(prestadorDTO);
-        }
-
         usuarioDTO.setEndereco(enderecoDTO);
         usuarioDTO.setImagemDiretorio(usuario.getImagemDiretorio());
 
