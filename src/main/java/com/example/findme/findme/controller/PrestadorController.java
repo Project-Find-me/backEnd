@@ -114,7 +114,7 @@ public class PrestadorController {
 
     }
 
-    @PutMapping("verificar/usuario/prestador")
+    @PutMapping("verificar/usuario")
     public Boolean verificarSeUsuarioEPrestador(@RequestBody Usuario usuario) {
 
         Prestador prestador = prestadorRepository.prestadorPorIdUsuario(usuario.getId());
