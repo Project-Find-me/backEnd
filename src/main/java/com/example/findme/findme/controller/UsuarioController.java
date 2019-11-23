@@ -71,7 +71,7 @@ public class UsuarioController {
 
         List<ServicoContratadoDTO> servicoContratadoDTOS = servicoContratoMapper.toDtoList(servicoContratado);
 
-        return new ResponseEntity<>(servicoContratadoDTOS, HttpStatus.FOUND);
+        return new ResponseEntity<>(servicoContratadoDTOS, HttpStatus.OK);
 
     }
 }

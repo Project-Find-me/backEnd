@@ -106,7 +106,7 @@ public class PrestadorController {
 
         List<ServicoContratadoDTO> servicoContratadoDTOS = servicoContratoMapper.toDtoList(servicoContratado);
 
-        return new ResponseEntity<>(servicoContratadoDTOS, HttpStatus.FOUND);
+        return new ResponseEntity<>(servicoContratadoDTOS, HttpStatus.OK);
 
     }
 
