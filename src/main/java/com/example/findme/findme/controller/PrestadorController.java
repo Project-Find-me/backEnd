@@ -14,6 +14,7 @@ import com.example.findme.findme.repository.PrestadorRepository;
 import com.example.findme.findme.repository.ServicoContratoRepository;
 import com.example.findme.findme.repository.UsuarioRepository;
 import com.example.findme.findme.service.PrestadorService;
+import com.example.findme.findme.service.ServicoContratoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
@@ -42,6 +43,8 @@ public class PrestadorController {
 
     private final ServicoContratoMapper servicoContratoMapper;
 
+    private final ServicoContratoService servicoContratoService;
+
     @Autowired
     public PrestadorController(
             UsuarioRepository usuarioRepository,
@@ -50,7 +53,8 @@ public class PrestadorController {
             PrestadorMapper prestadorMapper,
             PrestadorRepository prestadorRepository,
             ServicoContratoRepository servicoContratoRepository,
-            ServicoContratoMapper servicoContratoMapper) {
+            ServicoContratoMapper servicoContratoMapper,
+            ServicoContratoService servicoContratoService) {
         this.usuarioRepository = usuarioRepository;
         this.prestadorService = prestadorService;
         this.usuarioMapper = usuarioMapper;
@@ -58,6 +62,7 @@ public class PrestadorController {
         this.prestadorRepository = prestadorRepository;
         this.servicoContratoRepository = servicoContratoRepository;
         this.servicoContratoMapper = servicoContratoMapper;
+        this.servicoContratoService = servicoContratoService;
     }
 
     @PostMapping
@@ -110,7 +115,7 @@ public class PrestadorController {
 
     }
 
-    @PutMapping("verificar/usuario")
+    @PutMapping("/verificar/usuario")
     public ResponseEntity<PrestadorDTO> verificarSeUsuarioEPrestador(@RequestBody Usuario usuario) {
 
         Prestador prestador = prestadorRepository.prestadorPorIdUsuario(usuario.getId());

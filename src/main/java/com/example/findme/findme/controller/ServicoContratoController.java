@@ -22,7 +22,6 @@ public class ServicoContratoController {
     @Autowired
     private ServicoContratoMapper servicoContratoMapper;
 
-
     @Autowired
     private ServicoContratoRepository servicoContratoRepository;
 
@@ -55,5 +54,17 @@ public class ServicoContratoController {
        ServicoContratadoDTO servicoContratadoDTO = servicoContratoMapper.toDto(servicoContratadoAceito);
 
        return new ResponseEntity<>(servicoContratadoDTO,HttpStatus.OK);
+    }
+
+    @PutMapping("/pagamento/aceito")
+    public ResponseEntity<ServicoContratadoDTO> pagamentoAceito(@RequestBody ServicoContratado servicoContratado){
+
+        ServicoContratado servicoContratadoEncontrado = servicoContratoRepository.findAllById(servicoContratado.getId());
+
+        ServicoContratado servicoContratadoAceito = servicoContratoService.pagamentoAceito(servicoContratadoEncontrado);
+
+        ServicoContratadoDTO servicoContratadoDTO = servicoContratoMapper.toDto(servicoContratadoAceito);
+
+        return new ResponseEntity<>(servicoContratadoDTO,HttpStatus.OK);
     }
 }

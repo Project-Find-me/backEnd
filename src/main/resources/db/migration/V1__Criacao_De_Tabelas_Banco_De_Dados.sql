@@ -82,6 +82,7 @@ CREATE TABLE IF NOT EXISTS TB_CARTAO_DE_CREDITO (
 CREATE TABLE IF NOT EXISTS TB_SERVICO_CONTRATADO (
   id_servico_contratado INT NOT NULL AUTO_INCREMENT,
   status_contrato TINYINT DEFAULT 0,
+  status_pagamento TINYINT DEFAULT 0,
   id_usuario INT NOT NULL,
   id_prestador INT NOT NULL,
   id_agendamento INT NOT NULL,

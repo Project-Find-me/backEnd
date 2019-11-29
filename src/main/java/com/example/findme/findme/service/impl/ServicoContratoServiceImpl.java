@@ -1,13 +1,25 @@
 package com.example.findme.findme.service.impl;
 
 import com.example.findme.findme.Exception.MessagesExcpetion.CartaoDeCreditoFalseExcpetion;
+import com.example.findme.findme.Exception.MessagesExcpetion.ContratoNaoAceitoException;
 import com.example.findme.findme.Exception.MessagesExcpetion.FormaDePagamentoInexistenteException;
 import com.example.findme.findme.domain.*;
 import com.example.findme.findme.repository.*;
 import com.example.findme.findme.service.ServicoContratoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
 @Service
 public class ServicoContratoServiceImpl implements ServicoContratoService {
@@ -78,5 +90,15 @@ public class ServicoContratoServiceImpl implements ServicoContratoService {
         return servicoContratado;
     }
 
+    public ServicoContratado pagamentoAceito(ServicoContratado servicoContratado){
+
+        if (!servicoContratado.getStatusDeContrato()) {
+            throw new ContratoNaoAceitoException();
+        }
+
+        servicoContratado.setStatusPagamento(true);
+        this.servicoContratoRepository.save(servicoContratado);
+        return servicoContratado;
+    }
 
 }
