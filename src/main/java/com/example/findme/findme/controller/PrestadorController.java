@@ -111,19 +111,14 @@ public class PrestadorController {
     }
 
     @PutMapping("verificar/usuario")
-    public Boolean verificarSeUsuarioEPrestador(@RequestBody Usuario usuario) {
+    public ResponseEntity<PrestadorDTO> verificarSeUsuarioEPrestador(@RequestBody Usuario usuario) {
 
         Prestador prestador = prestadorRepository.prestadorPorIdUsuario(usuario.getId());
 
-        boolean verificarSePrestadorExiste = false;
+        PrestadorDTO prestadorDTO = prestadorMapper.toDto(prestador);
 
-        if (prestador != null) {
+        return new ResponseEntity<>(prestadorDTO, HttpStatus.OK);
 
-            verificarSePrestadorExiste = true;
-
-        }
-
-        return verificarSePrestadorExiste;
     }
 }
 
